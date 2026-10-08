@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang = "ca">
+    <head>
+        <title>Registre de clients</title>
+        <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li><a th:href="@{/alta-client}">Registra't</a></li>
+            <li><a th:href="@{/login}">Inicia sessió</a></li>
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h1>Registra't al nostre sistema!</h1>
+    <div>
+    <form class="form-registre" action="#" th:action="@{/processar}" th:object="${client}" method="post">
+    <label>Nom: <input type="text" th:field="*{nom}" /></label><br>
+    <label>Cognom: <input type="text" th:field="*{cognom}" /></label><br>
+    <label>Email: <input type="email" th:field="*{email}" /></label><br>
+    <label>Contrasenya: <input type="password" th:field="*{password}" /></label><br>
+    <label>Adreça: <input type="text" th:field="*{adresa}" /></label><br>
+    <label>Document d'identificacio: <input type="text" th:field="*{DNI}" /></label><br>
+    <label>Data de naixement: <input type="date" th:field="*{datanaix}" /></label><br>
+    <label>Telefon de contacte: <input type="text" th:field="*{telefon}" /></label><br>
+    <label>Com vols registrar-te?
+        <select th:field="*{tipusC}">
+            <option value="NORMAL">NORMAL</option>
+            <option value="VIP">VIP</option>
+        </select> 
+
+    </label>
+    <br>
+    <label>Tarjeta de credit: <input type="text" th:field="*{targeta}" /></label><br>
+
+    <button type="submit">Registra'm</button>
+
+    </form>
+    </div>
+
+</body>
+
+</html>

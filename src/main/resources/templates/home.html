@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ca">
+    
+    <head>
+    <title>Projecte Hotels</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </head>
+    
+    <body>
+
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a th:href="@{/}">Inici</a></li>
+                <li><a th:href="@{/hotel}">Hotels</a></li>
+                <li><a th:href="@{/alta-client}">Registra't</a></li>
+                <li><a th:href="@{/login}">Inicia sessió</a></li>
+            </ul>
+        </nav>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <h1>Benvingut a la pàgina principal del Projecte Hotels!</h1>
+        <div>
+            <p>Consulta els hotels, les seves habitacions o registrat-hi!</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+        <a th:href="@{/hotel}">Llistat d'Hotels</a>
+        <p>Comprova el llistat dels hotels disponibles!</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+            <a th:href="@{/alta-client}">Registra't!</a>
+            <p>Dona't d'alta en el nostre sistema per ser client!</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+            <a th:href="@{/login}">Inicia la sessió</a>
+            <p>Ja ets client? Inicia sessió en el sistema!</p>
+        </div>
+    
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Llistat d'habitacions</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <div class="container">
+        <h1>Llistat d'habitacions de l'hotel</h1>
+        <p th:each="habi : ${hotel.habitacions}">
+            <h1 th:text="${hotel.nom}"></h1>
+        </p>
+    </div>
+        <table class="category-list">
+            <tr>
+            <th>ID</th>
+            <th>Numero</th>
+            <th>Capacitat</th>
+            <th>Descripcio</th>
+            <th>Preu nit Allotjament i Esmorzar</th>
+            <th>Preu nit Mitja Pensio</th>
+            <th>Tipus</th>
+            <th>Estat</th>
+
+            </tr>
+            <tr>
+                <tr th:each="hab : ${hotel.habitacions}">
+                    <td th:text="${hab.id}"></td>
+                    <td th:text="${hab.numero}"></td>
+                    <td th:text="${hab.capacitat}"></td>
+                    <td th:text="${hab.descripcio}"></td>
+                    <td th:text="${hab.preuNitAD}"></td>
+                    <td th:text="${hab.preuNitMP}"></td>
+                    <td th:text="${hab.tipus}"></td>
+                    <td th:text="${hab.estat}"></td>
+                </tr>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

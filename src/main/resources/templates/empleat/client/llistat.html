@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Llistat de clients</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li><a th:href="@{/admin/dashboard}">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1>Gestió de clients</h1>
+        <table class="category-list">
+            <tr>
+            <th>Nom</th>
+            <th>Cognoms</th>
+            <th>DNI</th>
+            <th>Adreça</th>
+            <th>E-mail</th>
+            <th>Telèfon</th>
+            <th>Data d'alta</th>
+            <th>Targeta</th>
+            <th>Tipus de Client</th>
+
+
+            </tr>
+            <tr>
+                <tr th:each="client : ${clients}">
+                    <td th:text="${client.nom}"></td>
+                    <td th:text="${client.cognom}"></td>
+                    <td th:text="${client.DNI}"></td>
+                    <td th:text="${client.adresa}"></td>
+                    <td th:text="${client.email}"></td>
+                    <td th:text="${client.telefon}"></td>
+                    <td th:text="${client.dataAlta}"></td>
+                    <td th:text="${client.targeta}"></td>
+                    <td th:text="${client.tipusC}"></td>
+
+                </tr>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

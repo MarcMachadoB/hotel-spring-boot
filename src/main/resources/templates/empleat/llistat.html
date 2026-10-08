@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Llistat d'empleats</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li><a th:href="@{/perfil}">Perfil</a></li>
+            <li>
+                <form th:action="@{/logout}" method="POST">
+                <button class="boto-logout" type="submit">Sortir</button> </form></li>
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1>Gestió d'empleats de l'hotel</h1>
+        <table class="category-list">
+            <tr>
+                <th>Nom</th>
+                <th>Cognoms</th>
+                <th>DNI</th>
+                <th>Adreça</th>
+                <th>E-mail</th>
+                <th>Telèfon</th>
+                <th>Data de contractació</th>
+                <th>Lloc que ocupa</th>
+                <th>Salari</th>
+                <th>Estat</th>
+                <th>Rol</th>
+                <th>Modificar empleat</th>
+                <th>Esborrar empleats</th>
+            </tr>
+            <tr th:each="empleat : ${empleats}">
+                <td th:text="${empleat.nom}"></td>
+                <td th:text="${empleat.cognom}"></td>
+                <td th:text="${empleat.DNI}"></td>
+                <td th:text="${empleat.adresa}"></td>
+                <td th:text="${empleat.email}"></td>
+                <td th:text="${empleat.telefon}"></td>
+                <td th:text="${empleat.contractacio}"></td>
+                <td th:text="${empleat.llocfeina}"></td>
+                <td th:text="${empleat.salari}"></td>
+                <td th:text="${empleat.TipusE}"></td>
+                <td th:text="${empleat.usuari?.Rol ?: 'Sense rol assignat'}"></td>
+                <td>
+                    <a th:href="@{/modificar-empleat/{id}(id=${empleat.id})}">Modificar dades de l'empleat</a>
+                </td>
+
+                <td>
+                    <a th:href="@{/eliminar-empleat/{id}(id=${empleat.id})}">Donar de baixa al empleat</a>
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+</body>
+</html>

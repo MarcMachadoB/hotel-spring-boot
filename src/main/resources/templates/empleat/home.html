@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ca">
+    
+    <head>
+    <title>Projecte Hotels</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </head>
+    
+    <body>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a th:href="@{/}">Inici</a></li>
+                <li><a th:href="@{/hotel}">Hotels</a></li>
+                <li><a th:href="@{/perfil}">Perfil</a></li>
+                <li>
+                    <form th:action="@{/logout}" method="POST">
+                    <button class="boto-logout" type="submit">Sortir</button> </form></li>
+            </ul>
+        </nav>
+    
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+        <h1>Benvingut Empleat!</h1>
+        <div>
+            <p>Consulta i gestiona les diverses funcionalitats dels hotels</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+        <a th:href="@{/hotel}">Llistat d'Hotels</a>
+        <p>Comprova el llistat dels hotels inserits</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+        <a th:href="@{/empleats}">Llistat d'Empleats</a>
+        <p>Comprova els empleats que hi ha al hotel</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+            <a th:href="@{/reserva}">Llistat de reserves</a>
+            <p>Comprova les reserves que hi ha al hotel</p>
+            </div>
+
+        <div class = "contenidor-hotel">
+        <a th:href="@{/clients}">Llistat de Clients</a>
+        <p>Comprova els clients registrats al hotel</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+        <a th:href="@{/factures}">Llistat de Factures</a>
+        <p>Comprova les factures creades</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+        <a th:href="@{/tasques}">Llistat de Tasques</a>
+        <p>Comprova les tasques pendents i creades</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+        <a th:href="@{/alta-tasca}">Registrar tasques</a>
+        <p>Registra o reassigna tasques</p>
+        </div>
+
+
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Llistat de reserves</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li><a th:href="@{/reserva}">Reserves</a></li>
+            <li><a th:href="@{/alta-reserva}">Crear Reserva</a></li>
+            <li>
+                <form th:action="@{/logout}" method="POST">
+                <button class="boto-logout" type="submit">Sortir</button> </form></li>
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1>Gestió de les reserves de l'hotel</h1>
+        <table class="category-list">
+            <tr>
+            <th>ID Reserva</th>
+            <th>Client</th>
+            <th>Habitacio</th>
+            <th>Tipus Habitació</th>
+            <th>Hotel</th>
+            <th>Data Reserva</th>
+            <th>Data Inici</th>
+            <th>Data Fi</th>
+            <th>Tipus de Reserva</th>
+            <th>IVA</th>
+            <th>Total</th>
+            <th>Anul·lar Reserva</th>
+            <th>Confirmar</th>
+            <th>Veure factura</th>
+            <th>Valoració?</th>
+            </tr>
+            <tr>
+                <tr th:each="reserva : ${reserves}">
+                    <td th:text="${reserva.id}"></td>
+                    <td th:text="${reserva.Client.nom}"></td>
+                    <td th:text="${reserva.Habitacio.numero}"></td>
+                    <td th:text="${reserva.Habitacio.tipus}"></td>
+                    <td th:text="${reserva.Habitacio.hotel.nom}"></td>
+                    <td th:text="${reserva.data_reserva}"></td>
+                    <td th:text="${reserva.data_inici}"></td>
+                    <td th:text="${reserva.data_fi}"></td>
+                    <td th:text="${reserva.tipusReserva}"></td>
+                    <td th:text="${reserva.tipusIVA}"></td>
+                    <td th:text="${reserva.preu_total_reserva}"></td>
+                    <td>
+                        <a th:href="@{/anular/{id}(id=${reserva.id})}">Anul·lar</a>
+                    </td>
+
+                    <td>
+                        <a th:href="@{/confirmar/{id}(id=${reserva.id})}">Confirmar Reserva</a>
+                    </td>
+
+                    <td>
+                        <a th:href="@{/factures/{id}(id=${reserva.id})}">Veure Factura</a>
+                    </td>
+
+                    
+                </tr>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

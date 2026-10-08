@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ca">
+    
+    <head>
+    <title>Registre d'empleats</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </head>
+    
+    <body>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a th:href="@{/admin/dashboard}">Dashboard</a></li>
+                <li><a th:href="@{/hotel}">Hotels</a></li>
+                <li><a th:href="@{/perfil}">Perfil</a></li>
+                <li>
+                    <form th:action="@{/logout}" method="POST">
+                    <button class="boto-logout" type="submit">Sortir</button> </form></li>
+            </ul>
+        </nav>
+    
+        <br>
+        <br>
+        <br>
+        <br>
+
+<h1>Registra un empleat</h1>
+<form class="form-registre" action="#" th:action="@{/processar-empleat}" th:object="${empleat}" method="post">
+    <label>Nom: <input type="text" th:field="*{nom}" /></label><br>
+    <label>Cognom: <input type="text" th:field="*{cognom}" /></label><br>
+    <label>Email: <input type="email" th:field="*{email}" /></label><br>
+    <label>Adreça: <input type="text" th:field="*{adresa}" /></label><br>
+    <label>Document d'identificacio: <input type="text" th:field="*{DNI}" /></label><br>
+    <label>Data de naixement: <input type="date" th:field="*{datanaix}" /></label><br>
+    <label>Telefon de contacte: <input type="text" th:field="*{telefon}" /></label><br>
+    <label>Data de contractacio: <input type="date" th:field="*{contractacio}" /></label><br>
+    <label>Estat de l'empleat:
+        <select th:field="*{tipusE}">
+            <option value="ACTIU">ACTIU</option>
+            <option value="BAIXA">BAIXA</option>
+            <option value="PERMIS">PERMIS</option>
+        </select> 
+    </label>
+    <br>
+
+    <label>Lloc que ocupa: <input type="text" th:field="*{llocfeina}" /></label><br>
+    <label>Salari: <input type="text" th:field="*{salari}" /></label><br>
+    <label>Tasca a assignar:
+    <select th:field="*{tasques}">
+        <option th:each="t : ${tasques}" th:value="${t.id}" th:text="${t.descripcio}"></option>
+    </select>
+    </label>
+    <br>
+    <label>Rol a assignar:
+    <select th:field="*{rol}">
+        <option value="ROLE_ADMIN">Empleat Administrador</option>
+        <option value="ROLE_EMPLEAT">Empleat Normal</option>
+    </select>
+    </label>
+
+    <button type="submit">Enviar</button>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li><a th:href="@{/reserva}">Reserves</a></li>
+            <li><a th:href="@{/alta-reserva}">Crear Reserva</a></li>
+            <li>
+                <form th:action="@{/logout}" method="POST">
+                <button class="boto-logout" type="submit">Sortir</button> </form></li>
+        </ul>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <h1>Consulta les teves reserves!</h1>
+        <table class="category-list">
+            <tr>
+            <th>ID Factura</th>
+            <th>Data d'emissió</th>
+            <th>Metode de pagament</th>
+            <th>Base imposable</th>
+            <th>IVA</th>
+            <th>Total</th>
+            </tr>
+            <tr>
+                <tr th:each="fact : ${factura}">
+                    <td th:text="${fact.id}"></td>
+                    <td th:text="${fact.data_emissio}"></td>
+                    <td th:text="${fact.metode_pagament}"></td>
+                    <td th:text="${fact.base_imposable}"></td>
+                    <td th:text="${fact.IVA}"></td>
+                    <td th:text="${fact.total}"></td>
+                </tr>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

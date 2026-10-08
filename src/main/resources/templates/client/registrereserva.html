@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang = "ca">
+<head>
+    <title>Creació de Reserves</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li><a th:href="@{/reserva}">Reserves</a></li>
+            <li><a th:href="@{/alta-reserva}">Crear Reserva</a></li>
+            <li>
+                <form th:action="@{/logout}" method="POST">
+                <button class="boto-logout" type="submit">Sortir</button> </form></li>
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <h1>Crea la teva Reserva!</h1>
+<form class="form-registre" action="#" th:action="@{/processar-reserva}" th:object="${reserva}" method="post">
+    <label>Habitació:
+        <select th:field="*{habitacio}" id="habitacio">
+            <option th:each="c : ${resultats}" 
+                    th:value="${c.id}" 
+                    th:text="${c.numero} + ' (' + ${c.tipus} + ')' + ' ' + ' Hotel' + ' ' + ${c.hotel.nom}"
+                    th:attr="data-preu-ad=${c.preuNitAD}, data-preu-mp=${c.preuNitMP}">
+            </option>
+        </select>
+    </label>
+    <br>
+
+    <label>Data Reserva: 
+        <input type="date" th:field="*{data_reserva}" id="data_reserva" />
+    </label><br>
+
+    <label>Tipus de reserva:
+        <select th:field="*{tipusReserva}">
+            <option value="MP">Mitja Pensió</option>
+            <option value="AD">Servei Complert</option>
+        </select> 
+    </label>
+    <br>
+
+    <label>Data d'inici:
+        <input type="date" th:field="*{data_inici}" id="data_inici"/>
+    </label>
+    <br>
+
+    <label>Data final:
+        <input type="date" th:field="*{data_fi}" id="data_fi"/>
+    </label>
+    <br>
+
+    <p th:if="${param.error}">L'habitació ja está reservada en aquesta data!</p>
+
+    <label>Preu total de la reserva:
+        <input type="text" id="preu_total_reserva" name="preu_total_reserva" value="0.00" th:field="*{preu_total_reserva}" readonly/>
+    </label>
+    <br>
+
+    <label>Mètode de pagament:
+        <select th:field="*{metodePagament}">
+            <option value="efectiu">Efectiu</option>
+            <option value="tarjeta">Tarjeta</option>
+        </select>
+    </label>
+    <br>
+
+    <button type="submit">Enviar</button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const dataReservaField = document.getElementById('data_reserva');
+        const today = new Date().toISOString().split('T')[0];
+        dataReservaField.value = today;
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const dataIniciField = document.getElementById('data_inici');
+        const dataFiField = document.getElementById('data_fi');
+        const tipusReservaField = document.querySelector('[name="tipusReserva"]');
+        const habitacioField = document.getElementById("habitacio");
+        const preuTotalField = document.getElementById("preu_total_reserva");
+
+        function calcularPreuTotal() {
+            const dataInici = new Date(dataIniciField.value);
+            const dataFi = new Date(dataFiField.value);
+            const numNits = Math.ceil((dataFi - dataInici) / (1000 * 3600 * 24));
+
+            if (numNits <= 0) {
+                preuTotalField.value = "Data Incorrecta";
+                return;
+            }
+
+            const habitacioSeleccionada = habitacioField.options[habitacioField.selectedIndex];
+            const preuMP = parseFloat(habitacioSeleccionada.getAttribute("data-preu-mp"));
+            const preuAD = parseFloat(habitacioSeleccionada.getAttribute("data-preu-ad"));
+
+            let preuPorNit = tipusReservaField.value === "MP" ? preuMP : preuAD;
+            let preuTotal = preuPorNit * numNits * 0.21;
+
+            preuTotalField.value = preuTotal.toFixed(2);
+        }
+
+        // Afegir esdeveniments per recalcular el preu
+        dataIniciField.addEventListener('change', calcularPreuTotal);
+        dataFiField.addEventListener('change', calcularPreuTotal);
+        tipusReservaField.addEventListener('change', calcularPreuTotal);
+        habitacioField.addEventListener('change', calcularPreuTotal);
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ca">
+    
+    <head>
+    <title>Valoracio de la estada</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </head>
+    
+    <body>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a th:href="@{/}">Inici</a></li>
+                <li><a th:href="@{/hotel}">Hotels</a></li>
+                <li><a th:href="@{/perfil}">Perfil</a></li>
+                <li>
+                    <form th:action="@{/logout}" method="POST">
+                    <button class="boto-logout" type="submit">Sortir</button> </form></li>
+            </ul>
+        </nav>
+    
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+        <h1>Deixa la teva ressenya!</h1>
+
+        <form class="form-registre" action="#" th:action="@{/processar-valoracio}" th:object="${valoracio}" method="post">
+        
+            <label>Nota: 
+                <input type="number" th:field="*{nota}" id="nota" />
+            </label><br>
+        
+            <label>Comentari:
+                <input type="text" th:field="*{comentari}" id="comentari"/>
+            </label>
+            <br>
+        
+            <button type="submit">Enviar</button>
+        </form>
+
+    </body>
+</html>

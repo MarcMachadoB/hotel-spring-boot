@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ca">
+    
+    <head>
+    <title>Projecte Hotels</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </head>
+    
+    <body>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a th:href="@{/}">Inici</a></li>
+                <li><a th:href="@{/hotel}">Hotels</a></li>
+                <li><a th:href="@{/perfil}">Perfil</a></li>
+                <li>
+                    <form th:action="@{/logout}" method="POST">
+                    <button class="boto-logout" type="submit">Sortir</button> </form></li>
+            </ul>
+        </nav>
+    
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+        <h1>Benvingut!</h1>
+        <div>
+            <p>Consulta i gestiona les teves gestions</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+            <a th:href="@{/alta-reserva}">Reservar</a>
+            <p>Crea la teva reserva!</p>
+            </div>
+
+        <div class = "contenidor-hotel">
+        <a th:href="@{/reserva}">Les teves reserves</a>
+        <p>Comprova les reserves que has creat</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+        <a th:href="@{/perfil}">Perfil</a>
+        <p>Modifica les dades del teu perfil</p>
+        </div>
+
+        <div class = "contenidor-hotel">
+            <a th:href="@{/valoracio}">Valoracio</a>
+            <p>Deixa una ressenya sobre la teva estada!</p>
+            </div>
+
+    </body>
+</html>

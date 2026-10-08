@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Llistat de tasques</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li><a th:href="@{/empleat/home}">Home</a></li>
+            <li>
+                <form th:action="@{/logout}" method="POST">
+                <button class="boto-logout" type="submit">Sortir</button> </form></li>
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <div class="container">
+        
+        <h1>Gestió de tasques</h1>
+        <table class="category-list">
+            <tr>
+            <th>ID</th>
+            <th>Descripció</th>
+            <th>Data creació</th>
+            <th>Data d'execució</th>
+            <th>Estat</th>
+            <th>Empleat assignat</th>
+            <th>Completar Tasca</th>
+
+            </tr>
+            <tr>
+                <tr th:each="tasca : ${tasques}" 
+                    th:classappend="${tasca.tipusEstat.name() == 'PENDENT' ? 'pendent' 
+                    : (tasca.tipusEstat.name() == 'EN_PROGRES' ? 'en-progres' 
+                    : (tasca.tipusEstat.name() == 'COMPLETADA' ? 'completada' : ''))}">
+
+                    <td th:text="${tasca.id}"></td>
+                    <td th:text="${tasca.descripcio}"></td>
+                    <td th:text="${tasca.data_creacio}"></td>
+                    <td th:text="${tasca.data_execucio}"></td>
+                    <td th:text="${tasca.tipusEstat}"></td>
+                    <td>
+                        <ul>
+                            <li th:each="empleat : ${tasca.empleats}" th:text="${empleat.nom} + ' ' + ${empleat.cognom}"></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <form th:action="@{/completar-tasca/{id}(id=${tasca.id})}" method="POST">
+                        <button type="submit" th:disabled="${tasca.tipusEstat.name() == 'COMPLETADA'}">Completar Tasca</button>
+                        </form>
+                    </td>
+                </tr>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

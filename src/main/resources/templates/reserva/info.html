@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li><a th:href="@{/reserva}">Reserves</a></li>
+            <li><a th:href="@{/alta-reserva}">Crear Reserva</a></li>
+            <li>
+                <form th:action="@{/logout}" method="POST">
+                <button class="boto-logout" type="submit">Sortir</button> </form></li>
+        </ul>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <h1>Consulta les teves reserves!</h1>
+        <table class="category-list">
+            <tr>
+            <th>ID Reserva</th>
+            <th>Client</th>
+            <th>Habitacio</th>
+            <th>Data Reserva</th>
+            <th>Data Inici</th>
+            <th>Data Fi</th>
+            <th>Tipus de Reserva</th>
+            <th>IVA</th>
+            </tr>
+            <tr>
+                <tr th:each="res : ${reserva}">
+                    <td th:text="${res.id}"></td>
+                    <td th:text="${res.client.nom}"></td>
+                    <td th:text="${res.habitacio.numero}"></td>
+                    <td th:text="${res.data_reserva}"></td>
+                    <td th:text="${res.data_inici}"></td>
+                    <td th:text="${res.data_fi}"></td>
+                    <td th:text="${res.tipusReserva}"></td>
+                    <td th:text="${res.tipusIVA}"></td>
+                </tr>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

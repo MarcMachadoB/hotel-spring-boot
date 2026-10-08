@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>Perfil d'Usuari</title>
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li>
+                <form th:action="@{/logout}" method="POST">
+                <button class="boto-logout" type="submit">Sortir</button> </form></li>
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h1>Perfil d'Usuari</h1>
+
+    <div class = "contenidor-hotel" th:if="${usuari != null}">
+        <h2>Informació del teu compte</h2>
+        <p><strong>Correu electrònic:</strong> <span th:text="${usuari.email}"></span></p>
+        <p><strong>Nom:</strong> <span th:text="${nom}"></span></p>
+        <p><strong>Cognom:</strong> <span th:text="${cognom}"></span></p>
+        <p><strong>Telèfon:</strong> <span th:text="${telefon}"></span></p>
+
+        
+        
+        <form class="form-registre" action="#" th:action="@{/canviarContrasenya}" method="post">
+            <h3>Canviar contrasenya:</h3>
+            <label for="novaContrasenya">Nova contrasenya:</label>
+            <input type="password" id="novaContrasenya" name="novaContrasenya" required/><br><br>
+            <label for="confirmarContrasenya">Confirmar contrasenya:</label>
+            <input type="password" id="confirmarContrasenya" name="confirmarContrasenya" required/><br><br>
+            <button type="submit">Canviar contrasenya</button>
+
+        </form>
+
+        <form class="form-registre" action="#" th:action="@{/canviarTelefon}" method="post">
+            <h3>Canviar telefon:</h3>
+            <label for="nouTelefon">Nou Telèfon:</label>
+            <input type="text" id="nouTelefon" name="nouTelefon" required/><br><br>
+            <button type="submit">Canviar telefon</button>
+
+        </form>
+
+        <form class="form-registre" action="#" th:action="@{/canviarNom}" method="post">
+            <h3>Canviar nom:</h3>
+            <label for="nouNom">Nou nom:</label>
+            <input type="text" id="nouNom" name="nouNom" required/><br><br>
+            <button type="submit">Canviar nom</button>
+
+        </form>
+
+        <form class="form-registre" action="#" th:action="@{/canviarCognom}" method="post">
+            <h3>Canviar cognom:</h3>
+            <label for="nouCognom">Nou cognom:</label>
+            <input type="text" id="nouCognom" name="nouCognom" required/><br><br>
+            <button type="submit">Canviar cognom</button>
+        </form>
+
+
+        <div th:if="${error}" style="color: red;">
+            <p th:text="${error}"></p>
+        </div>
+        
+        <div th:if="${success}" style="color: green;">
+            <p th:text="${success}"></p>
+        </div>
+    </div>
+
+
+</body>
+</html>

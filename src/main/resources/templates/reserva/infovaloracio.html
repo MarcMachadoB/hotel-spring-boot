@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li><a th:href="@{/reserva}">Reserves</a></li>
+            <li><a th:href="@{/alta-reserva}">Crear Reserva</a></li>
+            <li>
+                <form th:action="@{/logout}" method="POST">
+                <button class="boto-logout" type="submit">Sortir</button> </form></li>
+        </ul>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <h1>Consulta valoracions</h1>
+        <table class="category-list">
+            <tr>
+            <th>ID Valoracio</th>
+            <th>Nota</th>
+            <th>Client</th>
+            <th>Data Pub.</th>
+            <th>Marcar com llegida</th>
+            </tr>
+            <tr>
+                <tr th:each="val : ${valoracio}">
+                    <td th:text="${val.id}"></td>
+                    <td th:text="${val.Usuari.email}"></td>
+                    <td th:text="${val.DataCreacio}"></td>
+
+                    <td>
+                        <a th:href="@{/llegit/{id}(id=${val.id})}">Marcar com llegida</a>
+                    </td>
+
+                </tr>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

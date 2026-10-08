@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang = "ca">
+    <head>
+        <title>Registre de tasques</title>
+        <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Inici</a></li>
+            <li><a th:href="@{/hotel}">Hotels</a></li>
+            <li><a th:href="@{/empleat/home}">Home</a></li>
+            <li>
+                <form th:action="@{/logout}" method="POST">
+                <button class="boto-logout" type="submit">Sortir</button> </form></li>
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h1>Registra les tasques dels hotels:</h1>
+    <div>
+
+    <form class="form-registre" action="#" th:action="@{/processar-tasca}" th:object="${tasca}" method="post">
+
+    <label>Selecciona una tasca existent (o deixa-ho en blanc per a crear-ne una nova):</label>
+        <select th:field="*{id}">
+            <option value="">--Tasca ja Creada:--</option>
+            <option th:each="t : ${tasques}" th:value="${t.id}" th:text="${t.descripcio}"></option>
+        </select>
+
+    <h2>O assigna una de nova:</h2>
+    <br>
+    <label>Descripcio: <input type="text" th:field="*{descripcio}" /></label><br>
+
+    <label>Data de Creació:
+        <input type="date" th:field="*{data_creacio}" th:value="${dataCreacio}"/>
+    </label> <br>
+
+    <label>Data d'execució:
+        <input type="date" th:field="*{data_execucio}" />
+    </label><br>
+
+    <label>Selecciona empleats a assignar:</label>
+    <select th:field="*{empleats}" multiple>
+        <option th:each="e : ${empleats}" th:value="${e.id}" th:text="${e.nom}"></option>
+    </select>
+
+    <label>Selecciona estat en el que es troba la tasca:</label>
+    <select th:field="*{tipusEstat}">
+        <option value="PENDENT">Pendent</option>
+        <option value="EN_PROGRES">En progrés</option>
+        <option value="COMPLETADA">Completada</option>
+    </select>
+
+    <button type="submit">Registra la tasca</button>
+
+    </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtener el campo de "Data de Creació"
+            const dataCreacioField = document.getElementById('data_creacio');
+            
+            // Obtener la fecha actual y formatearla en 'YYYY-MM-DD'
+            const today = new Date().toISOString().split('T')[0];
+            
+            // Establecer la fecha en el campo "Data de Creació"
+            dataCreacioField.value = today;
+        });
+    </script>
+
+</body>
+
+</html>
